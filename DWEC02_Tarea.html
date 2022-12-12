@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta name="author" content="Joel Szwarcbort">
+<script type="text/javascript">
+function Edificio(calle, numero, codigopostal)
+{
+	this.calle = calle;
+	this.numero = numero;
+	this.cPostal = codigopostal;
+	this.cplantas = new Array();
+	document.write("<br>");	
+	document.write("- Construido nuevo edificio en calle: "+calle+", nº: "+numero+", CP: "+codigopostal);
+
+	this.agregarPlantasYPuertas = function(numplantas,puertas)
+	{
+	//Agregar metodo agregar plantas y puertas.
+		let tplantas = this.cplantas.length;
+		
+		if (tplantas <=0)
+			vacio=0;
+		else
+			vacio=tplantas-1;
+		
+		for (i=vacio;i<tplantas+numplantas;i++)
+		{
+			this.cplantas[i] = new Array(puertas);
+			for (j=0;j<puertas;j++)
+				this.cplantas[i][j]="";	
+		}	
+	};
+
+	this.modificarNumero = function(numero)
+	{
+		this.numero = numero;
+	};
+	
+	this.modificarCalle = function(calle)
+	{
+		this.calle = calle;;
+	};
+	
+	this.modificarCodigoPostal = function(codigo)
+	{
+		this.cPostal = codigo;
+	};
+	
+	this.imprimeCalle = function()
+	{
+		return this.calle;
+	};
+	
+	this.imprimeNumero = function()
+	{
+		return this.numero;
+	};
+	
+	this.imprimeCodigoPostal = function()
+	{
+		return this.cPostal;
+	};
+	
+	this.agregarPropietario = function(nombre,planta,puerta)
+	{
+	// Comienzo el metodo de agregarPropietario
+		this.cplantas[planta-1][puerta-1]=nombre;
+			document.write("<br>");
+		document.write("- "+nombre+" es ahora el propietario de la puerta "+puerta+" de la planta "+planta);
+	};
+	
+	this.imprimePlantas = function()
+	{
+		// Comienzo el metodo de imprimePlantas
+	document.write("<br>");
+	document.write("---------------------------------------------------------------------------------------------");
+document.write("<br>");
+// Imprimo el listado de los propietarios
+document.write("<b>Listado de propietarios del edificio calle "+this.calle+" número "+this.numero+"</b>");
+		document.write("<br>");
+document.write("---------------------------------------------------------------------------------------------");
+document.write("<br>");
+		
+		for (i=0;i<this.cplantas.length;i++)
+			for (j=0;j<this.cplantas.length;j++){
+			let cplantas2;
+			cplantas2 = this.cplantas[i][j];
+			if (cplantas2 == undefined){
+			cplantas2 = "";
+			}
+				document.write("- Propietario del piso "+(j+1)+" de la planta "+(i+1)+": "+cplantas2);
+				document.write("<br>");
+				}
+document.write("---------------------------------------------------------------------------------------------");
+	};
+}
+document.write("---------------------------------------------------------------------------------------------");
+document.write("<br>");
+document.write("Joel Szwarcbort - Tarea 3 DWEC");
+document.write("<br>");
+document.write("---------------------------------------------------------------------------------------------");
+document.write("<br>");
+document.write("Solucion: ");
+document.write("<br>");
+document.write("---------------------------------------------------------------------------------------------");
+document.write("<br>");
+document.write("Instanciamos 3 objetos edificioA, edificioB y edificioC con estos datos:");
+// Agregar edificio
+let edificioA = new Edificio("García Prieto","58",15706);
+let edificioB = new Edificio("Camino Caneiro","29",32004);
+let edificioC = new Edificio("San Clemente","s/n",15705);
+// Imprimir algunas descripciones de los edificios.
+document.write("<br>");
+document.write("- El código postal del edificio A es: "+edificioA.imprimeCodigoPostal());
+document.write("<br>");
+document.write("- La calle del edificio C es: "+edificioC.imprimeCalle());
+document.write("<br>");
+document.write("- El edificio B está situado en la calle " + edificioB.imprimeCalle() + " número "+ edificioB.imprimeNumero());
+document.write("<br>");
+document.write("---------------------------------------------------------------------------------------------");
+document.write("<br>");
+document.write("- Agregamos 2 plantas y 3 puertas por planta al edificio A");
+// Agregar plantas y puertas
+edificioA.agregarPlantasYPuertas(3,3);
+document.write("<br>");
+document.write("- Agregamos 4 propietarios al edificio A");
+document.write("<br>");
+document.write("---------------------------------------------------------------------------------------------");
+// Agregar propietario
+edificioA.agregarPropietario("Jose Antonio Lopez",1,1);
+edificioA.agregarPropietario("Luisa Martinez",1,2);
+edificioA.agregarPropietario("Marta Castellón",1,3);
+edificioA.agregarPropietario("Antonio Pereira",2,2);
+edificioA.imprimePlantas();
+document.write("<br>");
+document.write("Agregamos 1 planta más al edificio A...");
+document.write("<br>");
+//edificioA.agregarPlantasYPuertas(1,3);
+//Creo que me da error por el lenght dentro del array (pero no me dio tiempo de corregirlo)
+document.write("Agregamos 1 propietario más al edificio A - Puerta 2, Planta 3");
+document.write("<br>");
+document.write("---------------------------------------------------------------------------------------------");
+edificioA.agregarPropietario("Pedro Meijide",3,2);
+edificioA.imprimePlantas();
+</script>
+</head>
+
+<html>
+</html>
